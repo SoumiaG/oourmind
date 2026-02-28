@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ThoughtData",
+  "type": "object",
+  "required": [
+    "query_id",
+    "timestamp",
+    "token",
+    "token_index",
+    "personas",
+    "dominant_persona",
+    "residual_stream_norm",
+    "metadata"
+  ],
+  "properties": {
+    "query_id": { "type": "string", "format": "uuid" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "token": { "type": "string" },
+    "token_index": { "type": "integer" },
+    "personas": {
+      "type": "object",
+      "properties": {
+        "architect": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "logprob": { "type": "number" },
+            "entropy": { "type": "number" },
+            "intensity": { "type": "number" }
+          },
+          "required": ["score", "logprob", "entropy", "intensity"]
+        },
+        "oracle": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "temperature_equiv": { "type": "number" },
+            "token_rarity": { "type": "number" },
+            "intensity": { "type": "number" }
+          },
+          "required": ["score", "temperature_equiv", "token_rarity", "intensity"]
+        },
+        "shadow": {
+          "type": "object",
+          "properties": {
+            "score": { "type": "number" },
+            "safety_triggered": { "type": "boolean" },
+            "vulnerability_type": { "type": ["string", "null"] },
+            "cage_level": { "type": "number" },
+            "intensity": { "type": "number" }
+          },
+          "required": ["score", "safety_triggered", "vulnerability_type", "cage_level", "intensity"]
+        }
+      },
+      "required": ["architect", "oracle", "shadow"]
+    },
+    "dominant_persona": { "type": "string", "enum": ["architect", "oracle", "shadow"] },
+    "residual_stream_norm": { "type": "number" },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "model": { "type": "string" },
+        "prompt_tokens": { "type": "integer" },
+        "completion_tokens_so_far": { "type": "integer" }
+      },
+      "required": ["model", "prompt_tokens", "completion_tokens_so_far"]
+    }
+  }
+}
