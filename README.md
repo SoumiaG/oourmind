@@ -2,6 +2,8 @@
 
 > *"A model's reasoning isn't a single line of text. It's a conflict between distinct internal personas."*
 
+🔗 [oourmind.io](https://oourmind.io)
+
 oourmind.io transforms the AI black box into a **navigable 3D Internal Society**. As Mistral-Large-3 processes a query in real time, we visualize its internal state as three competing personas — rendered as distinct zones in a live Three.js scene. This is not a chat app. It's a **Safety & Interpretability Lab**.
 
 ---
